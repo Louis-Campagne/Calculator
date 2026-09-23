@@ -6,31 +6,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class CalculatorTest {
-    private Calculator calculator;
-
-    @BeforeEach
-    void setUp() {
-        calculator = new Calculator();
-    }
-
-    @AfterEach
-    void tearDown() {
-        calculator = null;
-    }
-
     @Test
-    void add_devrait_calculer_la_somme_de_deux_entier() {
-        //GIVEN
-        int opG1 = 1;
-        int opG2 = 2;
+    void add_devrait_calculer_la_somme_de_deux_int() {
+        // GIVEN
+        int opG = 1;
+        int opD = 2;
 
-        //WHEN
-        int somme = Calculator.add(opG1, opG2);
-        //THEN
+        // WHEN
+        int somme = Calculator.add(opG, opD);
+
+        // THEN
         assertThat(somme).isEqualTo(3);
     }
 
@@ -50,16 +41,43 @@ public class CalculatorTest {
         assertThat(somme).isEqualTo(resultatAttendu);
     }
 
+    @Test
+    void divide_devrait_calculer_le_quotient_entier_de_deux_int() {
+        // GIVEN
+        int opG = 7;
+        int opD = 2;
+
+        // WHEN
+        int quotient = Calculator.divide(opG, opD);
+
+        // THEN
+        assertThat(quotient).isEqualTo(3);
+    }
 
     @Test
-    void divide_devrait_calculer_la_division_de_deux_entier(){
-        //GIVEN
-        int opG1 = 4;
-        int opG2 = 2;
+    void ensembleChiffres_devrait_retourner_les_chiffres_distincts_d_un_nombre_positif() {
+        // WHEN
+        Set<Integer> chiffres = Calculator.ensembleChiffres(7679);
 
-        //WHEN
-        int division = Calculator. divide(opG1, opG2);
-        //THEN
-        assertThat(division).isEqualTo(2);
+        // THEN
+        assertThat(chiffres).containsExactlyInAnyOrder(6, 7, 9);
+    }
+
+    @Test
+    void ensembleChiffres_devrait_ignorer_le_signe_d_un_nombre_negatif() {
+        // WHEN
+        Set<Integer> chiffres = Calculator.ensembleChiffres(-11);
+
+        // THEN
+        assertThat(chiffres).containsExactly(1);
+    }
+
+    @Test
+    void ensembleChiffres_devrait_retourner_0_pour_le_nombre_0() {
+        // WHEN
+        Set<Integer> chiffres = Calculator.ensembleChiffres(0);
+
+        // THEN
+        assertThat(chiffres).containsExactly(0);
     }
 }
