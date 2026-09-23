@@ -16,8 +16,7 @@ public class Calculator {
      * @return la somme opG + opD
      */
     public static int add(int opG, int opD) {
-        return opG + opD;
-    }
+        return Math.addExact(opG, opD);    }
 
     /**
      * Calcule le quotient entier de deux entiers.
@@ -27,6 +26,12 @@ public class Calculator {
      * @return le quotient entier opG / opD
      */
     public static int divide(int opG, int opD) {
+        if (opD == 0) {
+            throw new ArithmeticException("Division par zéro impossible");
+        }
+        if (opG == Integer.MIN_VALUE && opD == -1) {
+            throw new ArithmeticException("Le quotient dépasse la capacité d'un int");
+        }
         return opG / opD;
     }
 
