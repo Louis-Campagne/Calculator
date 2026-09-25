@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Calculator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.campagne.calculator</a>
+</div>
+
+<h1>Coverage Summary for Class: Calculator (com.campagne.calculator)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Calculator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87,5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.campagne.calculator;
+&nbsp;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.Set;
+&nbsp;
+&nbsp;public class Calculator {
+&nbsp;    private Calculator() {
+&nbsp;        // Classe utilitaire : pas d&#39;instanciation
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Calcule la somme de deux entiers.
+&nbsp;     *
+&nbsp;     * @param opG opérande gauche
+&nbsp;     * @param opD opérande droite
+&nbsp;     * @return la somme opG + opD
+&nbsp;     */
+&nbsp;    public static int add(int opG, int opD) {
+<b class="fc">&nbsp;        return Math.addExact(opG, opD);    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Calcule le quotient entier de deux entiers.
+&nbsp;     *
+&nbsp;     * @param opG dividende
+&nbsp;     * @param opD diviseur
+&nbsp;     * @return le quotient entier opG / opD
+&nbsp;     */
+&nbsp;    public static int divide(int opG, int opD) {
+<b class="fc">&nbsp;        if (opD == 0) {</b>
+<b class="fc">&nbsp;            throw new ArithmeticException(&quot;Division par zéro impossible&quot;);</b>
+&nbsp;        }
+<b class="pc">&nbsp;        if (opG == Integer.MIN_VALUE &amp;&amp; opD == -1) {</b>
+<b class="fc">&nbsp;            throw new ArithmeticException(&quot;Le quotient dépasse la capacité d&#39;un int&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return opG / opD;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retourne l&#39;ensemble des chiffres qui composent un nombre.
+&nbsp;     *
+&nbsp;     * @param pNombre le nombre à décomposer (le signe est ignoré)
+&nbsp;     * @return l&#39;ensemble non ordonné des chiffres de pNombre
+&nbsp;     */
+&nbsp;    public static Set&lt;Integer&gt; ensembleChiffres(int pNombre) {
+<b class="fc">&nbsp;        Set&lt;Integer&gt; chiffres = new HashSet&lt;&gt;();</b>
+<b class="fc">&nbsp;        long reste = Math.abs((long) pNombre);</b>
+&nbsp;        do {
+<b class="fc">&nbsp;            chiffres.add((int) (reste % 10));</b>
+<b class="fc">&nbsp;            reste = reste / 10;</b>
+<b class="fc">&nbsp;        } while (reste &gt; 0);</b>
+<b class="fc">&nbsp;        return chiffres;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-09-25 10:05</div>
+</div>
+</body>
+</html>
